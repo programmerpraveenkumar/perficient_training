@@ -1,0 +1,78 @@
+
+CREATE TABLE customers (
+    customer_id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    phone VARCHAR(15),
+    address TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+ 
+CREATE TABLE categories (
+    category_id SERIAL PRIMARY KEY,
+    category_name VARCHAR(100) NOT NULL,
+    description TEXT
+);
+ 
+CREATE TABLE suppliers (
+    supplier_id SERIAL PRIMARY KEY,
+    supplier_name VARCHAR(100) NOT NULL,
+    contact_name VARCHAR(100),
+    phone VARCHAR(15),
+    email VARCHAR(100),
+    address TEXT
+);
+ 
+CREATE TABLE products (
+    product_id SERIAL PRIMARY KEY,
+    product_name VARCHAR(100) NOT NULL,
+    description TEXT,
+    price NUMERIC(10, 2) NOT NULL,
+    stock INT DEFAULT 0,
+    category_id INT REFERENCES categories(category_id),
+    supplier_id INT REFERENCES suppliers(supplier_id),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+ 
+CREATE TABLE employees (
+    employee_id SERIAL PRIMARY KEY,
+    name VARCHAR(100),
+    email VARCHAR(100),
+    role VARCHAR(50)
+);
+ 
+CREATE TABLE orders (
+    order_id SERIAL PRIMARY KEY,
+    customer_id INT REFERENCES customers(customer_id),
+    order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    status VARCHAR(50) DEFAULT 'Pending',
+    total_amount NUMERIC(10, 2),
+    processed_by INT REFERENCES employees(employee_id)
+);
+ 
+CREATE TABLE order_items (
+    order_item_id SERIAL PRIMARY KEY,
+    order_id INT REFERENCES orders(order_id),
+    product_id INT REFERENCES products(product_id),
+    quantity INT NOT NULL,
+    unit_price NUMERIC(10, 2) NOT NULL
+);
+ 
+CREATE TABLE payments (
+    payment_id SERIAL PRIMARY KEY,
+    order_id INT REFERENCES orders(order_id),
+    amount NUMERIC(10, 2) NOT NULL,
+    payment_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    payment_method VARCHAR(50)
+);
+ 
+
+ 
+CREATE TABLE shipping (
+    shipping_id SERIAL PRIMARY KEY,
+    order_id INT REFERENCES orders(order_id),
+    address TEXT NOT NULL,
+    shipped_date DATE,
+    delivery_date DATE,
+    status VARCHAR(50)
+);
