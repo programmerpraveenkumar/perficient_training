@@ -1,0 +1,85 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2820
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fswiss\fcharset0 Helvetica-Bold;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww38200\viewh20540\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs48 \cf0 Testing is crucial in software development because it ensures the quality, reliability, and performance of the software before it reaches users. It helps identify and fix bugs early, saving time and money, and improving the overall user experience. Testing also helps in ensuring that the software meets the defined requirements and specifications.   \
+Here's a more detailed look at why testing is important: \
+\
+\'95
+\f1\b  Early Bug Detection:
+\f0\b0  Testing helps find and fix errors and bugs early in the development process, which is significantly more cost-effective than fixing them after the software is released. [1, 5]  \
+\'95 Improved Software Quality: Thorough \
+ \
+\'95
+\f1\b  Enhanced User Experience:
+\f0\b0  By identifying and fixing bugs and ensuring smooth performance, testing contributes to a better user experience. \
+\
+\'95 Meeting Requirements and Specifications: Testing verifies that the software meets the functional, performance, design, and implementation requirements defined during the development process.   \
+\'95 Reduced Development Costs: Catching and fixing bugs early in the development process reduces the overall cost of software development. \
+\
+\'95
+\f1\b  Increased Customer Satisfaction: 
+\f0\b0 A well-tested software product is more likely to meet user expectations and provide a positive experience, leading to greater customer satisfaction. \
+\'95 Improved Performance: Testing helps identify and resolve performance bottlenecks, ensuring that the software runs efficiently and effectively. \
+ \
+\'95
+\f1\b  Enhanced Security:
+\f0\b0  Testing helps identify vulnerabilities and weaknesses in the software, which can be exploited by malicious actors. \
+\
+
+\f1\b \'95 Reduced Risk of Failure: 
+\f0\b0 By identifying and defects   \
+\
+\'95 Facilitates Continuous Integration and Continuous Delivery (CI/CD): Automated testing is an essential part of CI/CD pipelines, which helps to quickly and reliably deliver new features and updates. \
+\'95 Improved Code Quality: Testing encourages developers to write more modular, testable, and maintainable code. \
+\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\qc\partightenfactor0
+
+\f1\b\fs72 \cf0 Types of testing\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\fs48 \cf0 1. Unit tests
+\f0\b0 \
+Unit tests are very low level and close to the source of an application. They consist in testing individual methods and functions of the classes, components, or modules used by your software. Unit tests are generally quite cheap to automate and can run very quickly by a continuous integration server.\
+\
+
+\f1\b 2. Integration tests
+\f0\b0 \
+Integration tests verify that different modules or services used by your application work well together. For example, it can be testing the interaction with the database or making sure that microservices work together as expected. These types of tests are more expensive to run as they require multiple parts of the application to be up and running.\
+\
+
+\f1\b 3. Functional tests\
+
+\f0\b0 Functional tests focus on the business requirements of an application. They only verify the output of an action and do not check the intermediate states of the system when performing that action.\
+\
+There is sometimes a confusion between integration tests and functional tests as they both require multiple components to interact with each other. The difference is that an integration test may simply verify that you can query the database while a functional test would expect to get a specific value from the database as defined by the product requirements.\
+\
+
+\f1\b 4. End-to-end tests\
+
+\f0\b0 End-to-end testing replicates a user behavior with the software in a complete application environment. It verifies that various user flows work as expected and can be as simple as loading a web page or logging in or much more complex scenarios verifying email notifications, online payments, etc...\
+\
+End-to-end tests are very useful, but they're expensive to perform and can be hard to maintain when they're automated. It is recommended to have a few key end-to-end tests and rely more on lower level types of testing (unit and integration tests) to be able to quickly identify breaking changes.\
+\
+
+\f1\b 5. Acceptance testing\
+
+\f0\b0 Acceptance tests are formal tests that verify if a system satisfies business requirements. They require the entire application to be running while testing and focus on replicating user behaviors. But they can also go further and measure the performance of the system and reject changes if certain goals are not met.\
+\
+
+\f1\b 6. Performance testing\
+
+\f0\b0 Performance tests evaluate how a system performs under a particular workload. These tests help to measure the reliability, speed, scalability, and responsiveness of an application. For instance, a performance test can observe response times when executing a high number of requests, or determine how a system behaves with a significant amount of data. It can determine if an application meets performance requirements, locate bottlenecks, measure stability during peak traffic, and more. \
+\
+
+\f1\b 7. Smoke testing\
+
+\f0\b0 Smoke tests are basic tests that check the basic functionality of an application. They are meant to be quick to execute, and their goal is to give you the assurance that the major features of your system are working as expected.\
+\
+Smoke tests can be useful right after a new build is made to decide whether or not you can run more expensive tests, or right after a deployment to make sure that they application is running properly in the newly deployed environment\
+\
+}

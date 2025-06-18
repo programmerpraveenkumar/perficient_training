@@ -1,0 +1,39 @@
+
+
+ Assume Sample Tables:
+
+employees(emp_id, name, dept_id, salary)
+departments(dept_id, dept_name)
+projects(proj_id, proj_name, dept_id)
+project_assignments(emp_id, proj_id, hours_worked)
+
+
+
+# 1. List employees who are not assigned to any project.
+
+ 
+
+# 2. For each department, list the average salary of employees assigned to at least one project.
+
+ 
+
+
+# 3. Show the total hours worked on each project along with project name and department name.
+
+ 
+
+
+
+# 4. Find the top 3 employees who worked the most total hours across all projects.
+
+ 
+
+# 5. List employees who have worked on all projects in their department.
+
+ 
+
+
+
+# 6. Find departments with no employees working on any projects.
+
+ 
