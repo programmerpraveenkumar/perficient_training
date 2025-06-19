@@ -1,0 +1,265 @@
+
+
+
+* Each query assumes the schema contains tables like: `customers`, `orders`, `order_items`, `products`, `categories`, `payments`, `shipping`, `employees`.
+
+---
+
+### 1. **Find customers who placed orders totaling more than \$500**
+
+```sql
+SELECT name FROM customers
+WHERE customer_id IN (
+    SELECT customer_id FROM orders WHERE total_amount > 500
+);
+```
+
+---
+
+### 2. **List product names that were ordered at least once**
+
+```sql
+SELECT product_name FROM products
+WHERE product_id IN (
+    SELECT DISTINCT product_id FROM order_items
+);
+```
+
+---
+
+### 3. **Find customers who haven't placed any orders**
+
+```sql
+SELECT name FROM customers
+WHERE customer_id NOT IN (
+    SELECT DISTINCT customer_id FROM orders
+);
+```
+
+---
+
+### 4. **List products not yet ordered**
+
+```sql
+SELECT product_name FROM products
+WHERE product_id NOT IN (
+    SELECT DISTINCT product_id FROM order_items
+);
+```
+
+---
+
+### 5. **Find orders containing a product with price > \$500**
+
+```sql
+SELECT order_id FROM order_items
+WHERE product_id IN (
+    SELECT product_id FROM products WHERE price > 500
+);
+```
+
+---
+
+### 6. **Find the most expensive product in each category**
+
+```sql
+SELECT product_name, category_id, price FROM products
+WHERE (category_id, price) IN (
+    SELECT category_id, MAX(price)
+    FROM products
+    GROUP BY category_id
+);
+```
+
+---
+
+### 7. **Find products supplied by suppliers who supply ‘Electronics’**
+
+```sql
+SELECT product_name FROM products
+WHERE supplier_id IN (
+    SELECT DISTINCT supplier_id FROM products
+    WHERE category_id = (
+        SELECT category_id FROM categories WHERE category_name = 'Electronics'
+    )
+);
+```
+
+---
+
+### 8. **List employees who processed at least one order**
+
+```sql
+SELECT name FROM employees
+WHERE employee_id IN (
+    SELECT DISTINCT processed_by FROM orders
+);
+```
+
+---
+
+### 9. **Get customer names who made payments**
+
+```sql
+SELECT name FROM customers
+WHERE customer_id IN (
+    SELECT customer_id FROM orders
+    WHERE order_id IN (
+        SELECT DISTINCT order_id FROM payments
+    )
+);
+```
+
+---
+
+### 10. **List products with a price above the average price**
+
+```sql
+SELECT product_name, price FROM products
+WHERE price > (
+    SELECT AVG(price) FROM products
+);
+```
+
+---
+
+### 11. **Get product names of the highest priced item ordered**
+
+```sql
+SELECT product_name FROM products
+WHERE product_id = (
+    SELECT product_id FROM order_items
+    ORDER BY unit_price DESC
+    LIMIT 1
+);
+```
+
+---
+
+### 12. **List categories with no products**
+
+```sql
+SELECT category_name FROM categories
+WHERE category_id NOT IN (
+    SELECT DISTINCT category_id FROM products
+);
+```
+
+---
+
+### 13. **Get customer(s) who placed the most orders**
+
+```sql
+SELECT name FROM customers
+WHERE customer_id = (
+    SELECT customer_id FROM orders
+    GROUP BY customer_id
+    ORDER BY COUNT(*) DESC
+    LIMIT 1
+);
+```
+
+---
+
+### 14. **Get supplier(s) who supplied the most number of products**
+
+```sql
+SELECT supplier_name FROM suppliers
+WHERE supplier_id = (
+    SELECT supplier_id FROM products
+    GROUP BY supplier_id
+    ORDER BY COUNT(*) DESC
+    LIMIT 1
+);
+```
+
+---
+
+### 15. **List all orders that have more than 2 items**
+
+```sql
+SELECT order_id FROM order_items
+GROUP BY order_id
+HAVING COUNT(*) > 2;
+```
+
+---
+
+### 16. **Find products in the same category as 'Laptop'**
+
+```sql
+SELECT product_name FROM products
+WHERE category_id = (
+    SELECT category_id FROM products WHERE product_name = 'Laptop'
+) AND product_name != 'Laptop';
+```
+
+---
+
+### 17. **Find products ordered by 'Alice Smith'**
+
+```sql
+SELECT DISTINCT product_name FROM products
+WHERE product_id IN (
+    SELECT product_id FROM order_items
+    WHERE order_id IN (
+        SELECT order_id FROM orders
+        WHERE customer_id = (
+            SELECT customer_id FROM customers WHERE name = 'Alice Smith'
+        )
+    )
+);
+```
+
+---
+
+### 18. **Get names of customers who have orders that haven't been shipped yet**
+
+```sql
+SELECT name FROM customers
+WHERE customer_id IN (
+    SELECT customer_id FROM orders
+    WHERE order_id NOT IN (
+        SELECT order_id FROM shipping
+    )
+);
+```
+
+---
+
+### 19. **List customers who made a payment above average payment**
+
+```sql
+SELECT name FROM customers
+WHERE customer_id IN (
+    SELECT customer_id FROM orders
+    WHERE order_id IN (
+        SELECT order_id FROM payments
+        WHERE amount > (
+            SELECT AVG(amount) FROM payments
+        )
+    )
+);
+```
+
+---
+
+### 20. **Find the latest order for each customer**
+
+```sql
+SELECT * FROM orders o
+WHERE order_date = (
+    SELECT MAX(order_date) FROM orders
+    WHERE customer_id = o.customer_id
+);
+```
+
+---
+
+Would you like:
+
+* Practice assignment PDFs?
+* These subqueries turned into interview questions?
+* Query explanations in plain English?
+
+Let me know!
